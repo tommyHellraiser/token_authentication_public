@@ -1,0 +1,693 @@
+{
+	"info": {
+		"_postman_id": "e9a4f58a-aaa5-42bb-bdf5-e5079e1040b5",
+		"name": "User token authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26527625"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "internal",
+					"item": [
+						{
+							"name": "alive internal",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "username",
+										"value": "{{super_username}}",
+										"type": "text"
+									},
+									{
+										"key": "token",
+										"value": "{{session_token_super}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{UTAUrl}}:{{UTAPort}}/api/internal/alive",
+									"host": [
+										"{{UTAUrl}}"
+									],
+									"port": "{{UTAPort}}",
+									"path": [
+										"api",
+										"internal",
+										"alive"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "stop gracefully internal",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "username",
+										"value": "{{super_username}}",
+										"type": "text"
+									},
+									{
+										"key": "token",
+										"value": "{{session_token_super}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{UTAUrl}}:{{UTAPort}}/api/internal/stop",
+									"host": [
+										"{{UTAUrl}}"
+									],
+									"port": "{{UTAPort}}",
+									"path": [
+										"api",
+										"internal",
+										"stop"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "stop now internal",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "username",
+										"value": "{{super_username}}",
+										"type": "text"
+									},
+									{
+										"key": "token",
+										"value": "{{session_token_super}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{UTAUrl}}:{{UTAPort}}/api/internal/stop_now",
+									"host": [
+										"{{UTAUrl}}"
+									],
+									"port": "{{UTAPort}}",
+									"path": [
+										"api",
+										"internal",
+										"stop_now"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "alive",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/api/public/alive",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"api",
+								"public",
+								"alive"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "manage",
+					"item": [
+						{
+							"name": "change_password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//pm.collectionVariables.set(\"session_token\", responseBody);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "username",
+										"value": "tommyHellraiser",
+										"type": "text"
+									},
+									{
+										"key": "token",
+										"value": "{{session_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"old_password\": \"Contraseña123.\",\r\n    \"new_password\": \"GatoPut0!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UTAUrl}}:{{UTAPort}}/users/manage/change_password",
+									"host": [
+										"{{UTAUrl}}"
+									],
+									"port": "{{UTAPort}}",
+									"path": [
+										"users",
+										"manage",
+										"change_password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"session_token\", responseBody);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "username",
+										"value": "tommy2",
+										"type": "text"
+									},
+									{
+										"key": "token",
+										"value": "{{session_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": {{username}},\r\n    \"password\": {{session_token}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{UTAUrl}}:{{UTAPort}}/users/manage/delete_user",
+									"host": [
+										"{{UTAUrl}}"
+									],
+									"port": "{{UTAPort}}",
+									"path": [
+										"users",
+										"manage",
+										"delete_user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user_login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"session_token\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"tommyHellraiser\",\r\n    \"password\": \"GatoPut0!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/users/login",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user_login super",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"session_token_super\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"super\",\r\n    \"password\": \"asdfgqwert1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/users/login",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user_logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "theTommmy",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{session_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/users/logout",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user_logout super",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "{{super_username}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{session_token_super}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/users/logout",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "super",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{session_token_super}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"tommyHellraiser\",\r\n    \"password\": \"Contraseña123.\",\r\n    \"email\": \"email@mail.com\",\r\n    \"level\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/users/create_user",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"users",
+								"create_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_user super",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "{{super_username}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{session_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"tommyHellraiser\",\r\n    \"password\": \"contraseña123\",\r\n    \"email\": \"email@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/users/create_user",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"users",
+								"create_user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "internal",
+			"item": [
+				{
+					"name": "create_user internal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"tommyHellraiserasd\",\r\n    \"password\": \"contraseña123\",\r\n    \"email\": \"email@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/users/create_user",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"users",
+								"create_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_user internal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"session_token\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "username",
+								"value": "{{super_username}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{session_token_super}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"tommyHellraiser\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/internal/delete_user",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"internal",
+								"delete_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "undo_delete_user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "username",
+								"value": "{{super_username}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{session_token_super}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"tommyHellraiser\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/internal/undo_delete_user",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"internal",
+								"undo_delete_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change_user_level",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "username",
+								"value": "{{super_username}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{session_token_super}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{UTAUrl}}:{{UTAPort}}/internal/change_user_level",
+							"host": [
+								"{{UTAUrl}}"
+							],
+							"port": "{{UTAPort}}",
+							"path": [
+								"internal",
+								"change_user_level"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "UTAUrl",
+			"value": "https://127.0.0.1",
+			"type": "string"
+		},
+		{
+			"key": "UTAPort",
+			"value": "8010",
+			"type": "string"
+		},
+		{
+			"key": "super_username",
+			"value": "\"super\"",
+			"type": "string"
+		},
+		{
+			"key": "super_pass",
+			"value": "\"asdfgqwert1234567890\"",
+			"type": "string"
+		},
+		{
+			"key": "session_token_super",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "tommyHellraiser",
+			"type": "string"
+		},
+		{
+			"key": "session_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "pass",
+			"value": "asdfgqwert1234567890",
+			"type": "string"
+		}
+	]
+}

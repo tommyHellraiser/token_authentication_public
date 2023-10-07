@@ -10,9 +10,13 @@ created for.
 Having said that, let's take a look at this app.
 
 ## How to use
-Have Rust cargo installed to run the project, run it with `cargo run`, and if you want to 
-make an .exe file, so you don't have to execute it with cargo, run `cargo build --release` and 
-cargo will compile a standalone release exe file for you.
+This is a back-end only application, and as such, it does not have a GUI to use, or front-end. Testing 
+and usage is achieved through analyzing the database and using a request app such as Postman. There's a
+collection included for testing, feel free to use it and modify it as you see fit!
+
+First of all, you'll need to have Rust cargo installed to run the project, run it with `cargo run`, 
+and if you want to make an .exe file, so you don't have to execute it with cargo, run 
+`cargo build --release` and cargo will compile a standalone release exe file for you.
 
 ## How and what to configure
 
