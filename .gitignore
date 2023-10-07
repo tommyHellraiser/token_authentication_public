@@ -1,0 +1,6 @@
+*/certs/*
+certs/
+.idea/*
+/.idea/*
+target/*
+cargo.lock
